@@ -1,16 +1,13 @@
 import processing.video.*;
 
-int width = 1920;
-int height = 1080;
+int width = 960;
+int height = 540;
 float initOpacity = 0;
 
 void setup() {
-
   size(960, 540);
-  fill(0);
+  fill(155);
   rect(0, 0, 960, 540);
-
-
 }
 
 float randy(int num) {
@@ -29,29 +26,30 @@ int[] randomColor() {
 
 void draw() {
 
-  if (initOpacity < 50) {
-    initOpacity = initOpacity + .25;
+  if (initOpacity < 90) {
+    initOpacity = initOpacity + .35;
   }
 
-  int granularity = 40;
-  int blockWidth = width / granularity;
-  int blockHeight = height / granularity;
+  int granularity = 50;
+  float blockWidth = (float) width / granularity ;
+  float blockHeight = (float) height / granularity ;
   
-  int granularity2 = 80;
-  int blockWidth2 = width / granularity2;
-  int blockHeight2 = height / granularity2;
-  int[][] Matrix = new int[blockWidth][blockHeight];
-  int[][] Matrix2 = new int[blockWidth2][blockHeight2];
+  int granularity2 = 100;
+  float blockWidth2 = (float) width / granularity2;
+  float blockHeight2 = (float) height / granularity2;
+  int[][] Matrix = new int[granularity][granularity];
+  int[][] Matrix2 = new int[granularity2][granularity2];
   noStroke();
-  for (int i = 0; i < Matrix.length; i++) {
-    for (int j = 0; j < Matrix[i].length; j++ ) {
+  for (int i = 0; i < granularity; i++) {
+    for (int j = 0; j < granularity; j++ ) {
       int[] rColor = randomColor();
       fill(rColor[0], rColor[1], rColor[2], 50);
-      rect(i*blockWidth, j*blockHeight, blockWidth, blockHeight);
+      rect(j*blockWidth, i*blockHeight, blockWidth, blockHeight);
     }
   }
-  for (int i = 0; i < Matrix2.length; i++) {
-    for (int j = 0; j < Matrix2[i].length; j++ ) {
+
+  for (int i = 0; i < granularity2; i++) {
+    for (int j = 0; j < granularity2; j++ ) {
       int[] rColor = randomColor();
       fill(rColor[0], rColor[1], rColor[2], 50);
       rect(j*blockWidth2, i*blockHeight2, blockWidth2, blockHeight2);
